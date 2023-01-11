@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <title>Diabetes Detection</title>
+</head>
+
+<body style="background: linear-gradient(120deg,#CCCCCC 40%, #90cee6 60%)">
+    <div class="container">
+        
+
+        <div class="row pt-3 pb-2 sticky-top" style="background: linear-gradient(120deg,#CCCCCC 40%, #90cee6 60%)">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-6">
+                <h1 class="fw-bold text-center text-dark border border-3 border-top-0 border-start-0 border-end-0 border-secondary pb-2">Diabetes Prediction</h1>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+
+        <span class="col-sm-4 mt-3 mb-5">
+            
+                {% if result  %}
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <p>{{ result }}</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endif %} 
+        </span>
+
+        <form class="row" method="post">
+            <p class="col-sm-6 mt-3">1. Do you have high Blood Pressure</p>
+            <span class="col-sm-6 mt-3">
+            <input type="radio" id="bp_1" name="bp" value="1" required>
+            <label for="bp_1">Yes</label>
+            <input type="radio" id="bp_2" name="bp" value="0">
+            <label for="bp_2">No</label>
+            </span>
+
+            <p class="col-sm-6 mt-3">2. Do you have high Cholesterol</p>
+            <span class="col-sm-6 mt-3">
+            <input type="radio" id="ch_1" name="ch" value="1" required>
+            <label for="ch_1">Yes</label>
+            <input type="radio" id="ch_2" name="ch" value="0">
+            <label for="ch_2">No</label>
+            </span>
+
+            <label for="cholcheck" class="col-sm-6 mt-3">3 .Cholesterol check</label>
+            <select name="cholcheck" id="cholcheck" class="col-sm-6 mt-3" required>
+                    <option value="0">No cholesterol check in 5 years</option>
+                    <option value="1">Had cholesterol check in 5 years</option>
+            </select>
+
+            <label for="age" class="col-sm-6 mt-3">4. BMI</label>
+            <input type="number" id="bmi" name="bmi" class="col-sm-6 mt-3" required>
+
+            <p class="col-sm-6 mt-3">5. Have you smoked atleast 100 cigarettes in your entire life</p>
+            <span class="col-sm-6 mt-3">
+            <input type="radio" id="ans1_1" name="cig" value="1" required>
+            <label for="ans1">Yes</label>
+            <input type="radio" id="ans1_2" name="cig" value="0">
+            <label for="ans1_2">No</label>
+            </span>
+
+            <p class="col-sm-6 mt-3">6. Have you ever had stroke</p>
+            <span class="col-sm-6 mt-3">
+            <input type="radio" id="stk1_1" name="stk" value="1" required>
+            <label for="stk1_1">Yes</label>
+            <input type="radio" id="stk1_2" name="stk" value="0">
+            <label for="stk1_2">No</label>
+            </span>
+
+            <p class="col-sm-6 mt-3">7.Do you have coronary heart disease(CHD) or myocardial infarction(MI)</p>
+            <span class="col-sm-6 mt-3">
+                <input type="radio" id="ans2_1" name="heartdisease" value="1" required>
+                <label for="ans2_1">Yes</label>
+                <input type="radio" id="ans2_2" name="heartdisease" value="0">
+                <label for="ans2_2">No</label>
+            </span>
+
+            <p class="col-sm-6 mt-3">8. Physical activity in past 30 days- not including job</p>
+            <span class="col-sm-6 mt-3">
+                <input type="radio" id="ans3_1" name="phy_act" value="1" required>
+                <label for="ans3_1">Yes</label>
+                <input type="radio" id="ans3_2" name="phy_act" value="0">
+                <label for="ans3_2">No</label>
+            </span>
+
+            <p class="col-sm-6 mt-3">9. Consumes fruit one or more times per day</p>
+            <span class="col-sm-6 mt-3">
+                <input type="radio" id="ans4_1" name="fruit_cons" value="1" required>
+                <label for="ans4_1">Yes</label>
+                <input type="radio" id="ans4_2" name="fruit_cons" value="0">
+                <label for="ans4_2">No</label>
+            </span>
+
+            <p class="col-sm-6 mt-3">10. Do you consume vegetables once or more than once in a day</p>
+            <span class="col-sm-6 mt-3">
+                <input type="radio" id="ans5_1" name="veg_cons" value="1" required>
+                <label for="ans5_1">Yes</label>
+                <input type="radio" id="ans5_2" name="veg_cons" value="0">
+                <label for="ans5_2">No</label>
+            </span>
+
+            <p class="col-sm-6 mt-3">11. Alcohol consumption: Do you consume alcohol more than the specified value per week (Adult male:14 and adult female:7)</p>
+            <span class="col-sm-6 mt-3">
+                <input type="radio" id="ans6_1" name="alcohol_cons" value="1" required>
+                <label for="ans6_1">Yes</label>
+                <input type="radio" id="ans6_2" name="alcohol_cons" value="0" required>
+                <label for="ans6_2">No</label>
+            </span>
+
+            <p class="col-sm-6 mt-3">12. Do you have any kind of health care coverage, including health insurance, prepaid plans such as HMO, etc.</p>
+            <span class="col-sm-6 mt-3">
+                <input type="radio" id="hcc_1" name="hcc" value="1" required>
+                <label for="hcc_1">Yes</label>
+                <input type="radio" id="hcc_2" name="hcc" value="0" required>
+                <label for="hcc_2">No</label>
+            </span>
+
+            <p class="col-sm-6 mt-3">13. Was there a time in the past 12 months when you needed to see a doctor but could not because of cost</p>
+            <span class="col-sm-6 mt-3">
+                <input type="radio" id="cost_1" name="cost" value="1" required>
+                <label for="hcc_1">Yes</label>
+                <input type="radio" id="cost_2" name="cost" value="0">
+                <label for="cost_2">No</label>
+            </span>
+
+            <p class="col-sm-6 mt-3">14 .Rate your health</p>
+            <span class="col-sm-6 mt-3">
+                <input type="radio" id="ans7_1" name="gen_hel" value="1" required>
+                <label for="ans7_1">Excellent</label>
+                <input type="radio" id="ans7_2" name="gen_hel" value="2">
+                <label for="ans7_2">Very good</label>
+                <input type="radio" id="ans7_3" name="gen_hel" value="3">
+                <label for="ans7_3">Good</label>
+                <input type="radio" id="ans7_4" name="gen_hel" value="4">
+                <label for="ans7_4">Fair</label>
+                <input type="radio" id="ans7_5" name="gen_hel" value="5">
+                <label for="ans7_5">Poor</label>
+            </span>
+
+            
+            <label class="col-sm-6 mt-3" for="num_ment_hlth">15.Number of days you have had poor mental health (0-30 days)</label>
+            <input type="number" name="num_ment_hlth" id="num_ment_hlth" class="col-sm-6 mt-3" required>
+
+            <label for="num_phy_hlth" class="col-sm-6 mt-3">16.Number of days you have had physical illness or injury in past 30 days (0-30 days)</label>
+            <input class="col-sm-6 mt-3" type="number" name="num_phy_hlth" id="num_phy_hlth" required>
+
+            <p class="col-sm-6 mt-3">17.Do you have serious difficulty while walking or climbing stairs</p>
+            <span class="col-sm-6 mt-3">
+                <input type="radio" id="ans8_1" name="walk" value="1" required>
+                <label for="ans8_1">Yes</label>
+                <input type="radio" id="ans8_2" name="walk" value="0">
+                <label for="ans8_2">No</label>
+            </span>
+
+            <label for="gender" class="col-sm-6 mt-3">18 .Gender</label>
+                <span class="col-sm-6 mt-3">
+                    <input type="radio" id="gender1_1" name="gender" value="1" required>
+                    <label for="gender1_1">Male</label>
+                    <input type="radio" id="gender1_2" name="gender" value="0">
+                    <label for="gender1_2">Female</label>
+                </span>
+
+                <label for="age" class="col-sm-6 mt-3">19. Age</label>
+                <select name="age" id="age" class="col-sm-6 mt-3" required>
+                        <option value="1">18-24</option>
+                        <option value="2">25 to 29</option>
+                        <option value="3">30 to 34</option>
+                        <option value="4">35 to 39</option>
+                        <option value="5">40 to 44</option>
+                        <option value="6">45 to 49</option>
+                        <option value="7">50 to 54</option>
+                        <option value="8">55 to 59</option>
+                        <option value="9">60 to 64</option>
+                        <option value="10">65 to 69</option>
+                        <option value="11">70 to 74</option>
+                        <option value="12">75 to 79</option>
+                        <option value="13">80 or older</option>
+                </select>
+
+                <label for="education" class="col-sm-6 mt-3">20. Highest Education</label>
+                <select name="education" id="education" class="col-sm-6 mt-3" required>
+                        <option value="1">Never attended school or only kindergarten</option>
+                        <option value="2">Grades 1 through 8 (Elementary)</option>
+                        <option value="3">Grades 9 through 11 (Some high school)</option>
+                        <option value="4">Grade 12 or GED (High school graduate)</option>
+                        <option value="5">College 1 year to 3 years (Some college or technical school)</option>
+                        <option value="6">College 4 years or more (College graduate)</option>
+                </select>
+
+                <label for="income" class="col-sm-6 mt-3">21. Income</label>
+                <select name="income" id="income" class="col-sm-6 mt-3" required>
+                        <option value="1">Less than $10,000</option>
+                        <option value="2">$10,000 - $15,000</option>
+                        <option value="3"> $15,000 -  $20,000 </option>
+                        <option value="4">$20,000 - $25,000</option>
+                        <option value="5">$25,000 - $35,000</option>
+                        <option value="6">$35,000  - $50,000</option> 
+                        <option value="7">$50,000  - $75,000</option>$75,000 
+                        <option value="8">$50,000  - $75,000</option>
+                        <option value="9">$75,000 or more</option>
+                </select>
+
+
+                  
+ 
+            <div class="col-sm-4 mt-3 mb-5"></div>
+            <span class="col-sm-4 mt-3 mb-5">
+
+                <button type="submit" class="btn btn-primary btn-lg m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Check</button>
+                <button type="reset"class="btn btn-info btn-lg m-2">Reset</button>
+            </span>
+            
+            <span class="col-sm-4 mt-3 mb-5">
+                
+            </span>
+            
+        </form>
+
+        </div>
+    </div>
+    </body>
+
+</html>
